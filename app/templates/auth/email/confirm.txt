@@ -1,0 +1,13 @@
+您好， {{ user.username }},
+
+欢迎访问 Blockly Games
+
+请点击以下链接以确认您的账户：
+
+{{ url_for('auth.confirm', token=token, _external=True) }}
+
+你真诚的,
+
+软件工程开发小组
+
+注意：请不要回复此邮件。

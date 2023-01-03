@@ -1,0 +1,49 @@
+{% extends "student/student_base.html" %}
+
+{% block main_page %}
+    <div class="row mt-2">
+        <div class="col-md-6">
+            <table class="table table-striped table-bordered">
+                <thead class="text-center">
+                <tr>
+                    <th>姓名</th>
+                    <th>核酸日期</th>
+                    <th>距今N天</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for name, days in student_days.items() %}
+                    <tr class="text-center">
+                        <td class="text-primary">{{ name }}</td>
+                        <td class="text-info">{{ days[0] }}</td>
+                        <td class="{% if days[1] > 2 %}
+                    text-danger
+                    {% else %}
+                    text-success
+                    {% endif %}">
+                            {{ days[1] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4 offset-2">
+            <h3 class="text-center text-danger">核酸超期学生名单：</h3>
+            <div class="row mt-2">
+                {% for student in overdue_students %}
+                    <div class="col-md-3 text-center border border-danger text-primary">{{ student }}</div>
+                {% endfor %}
+            </div>
+            <div class="col-md-6 offset-3 btn btn-primary mt-3" id="copy_btn">复制学生名单</div>
+            <div class="col-md-12 border border-info text-primary mt-1" id="students_list">
+                {% for student in overdue_students %}
+                    {{ student }}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='student/scripts/student_all.js') }}"></script>
+{% endblock %}

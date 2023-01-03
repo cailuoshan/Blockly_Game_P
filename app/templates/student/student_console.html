@@ -1,0 +1,25 @@
+{% extends "student/student_base.html" %}
+
+{% block main_page %}
+    <div class="row mt-5">
+        <div class="col-md-2 offset-5 btn btn-warning" id="init_btn">初始化学生列表</div>
+    </div>
+    <div class="row mt-3">
+        <h4 class="col-md-12 text-center text-primary">自动打卡学生</h4>
+    </div>
+    <div class="row mt-1">
+        {% for student in students %}
+            <div class="auto_btn btn
+            {% if student.auto_record %}
+            btn-primary
+            {% else %}
+            btn-light
+            {% endif %}
+             col-md-2">{{ student.student_name }}</div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='student/scripts/console.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Scores{% endblock %}
+
+{% block page_content %}
+    <h2 class="text-primary text-center">{{ game }}游戏用时排行</h2>
+    <div class="col-md-6 col-md-offset-3">
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th class="text-center">姓名</th>
+                <th class="text-center">用时(s)</th>
+                <th class="text-center">排名</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for index, score in scores %}
+                <tr class="text-center">
+                    <td>{{ score.username }}</td>
+                    <td>{{ score.time_cost }}</td>
+                    <td>{{ index }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
